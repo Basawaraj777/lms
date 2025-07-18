@@ -32,6 +32,7 @@ interface iAppProps {
 
 export function Uploader({ value, onChange }: iAppProps) {
   const fileUrl = useConstruct(value || "");
+
   const [fileState, setFileState] = useState<UploaderState>({
     error: false,
     file: null,
@@ -163,7 +164,7 @@ export function Uploader({ value, onChange }: iAppProps) {
       return <RenderErrorState />;
     }
 
-    if (fileState.objectUrl) {
+    if (fileState.objectUrl && !fileState.objectUrl.endsWith(".dev/")) {
       return (
         <RenderUploadedState
           handleRemove={handleRemove}
